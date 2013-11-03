@@ -1,0 +1,15 @@
+{
+	"registry": {
+		"name": "brewbot"
+	},
+	"rest": {
+		"name": "brewbot-registry-rest",
+		"version": "1.0.0",
+		"resources": "./resources"
+	},
+	"ws": {
+		"name": "brewbot-registry-ws",
+		"version": "1.0.0",
+		"resources": "./resources"
+	}
+}

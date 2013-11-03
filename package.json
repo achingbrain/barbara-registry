@@ -1,0 +1,28 @@
+{
+	"name": "barbara-registry",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Service registry",
+	"main": "registry.js",
+	"scripts": {
+		"test": "istanbul cover nodeunit test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/achingbrain/barbara-registry.git"
+	},
+	"dependencies": {
+		"winston": "~0.7",
+		"nconf": "~0.6",
+		"seaport": "~1.7",
+		"wantsit": "~1.0",
+		"ws": "~0.4",
+		"bonvoyage": "~1.0"
+	},
+	"devDependencies": {
+		"nodeunit": "~0.8",
+		"jsmockito": "~1.0",
+		"jshamcrest": "~0.7",
+		"istanbul": "~0.1"
+	}
+}
