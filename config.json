@@ -1,14 +1,14 @@
 {
 	"registry": {
-		"name": "brewbot"
+		"name": "barbara"
 	},
 	"rest": {
-		"name": "brewbot-registry-rest",
+		"name": "barbara-registry-rest",
 		"version": "1.0.0",
 		"resources": "./resources"
 	},
 	"ws": {
-		"name": "brewbot-registry-ws",
+		"name": "barbara-registry-ws",
 		"version": "1.0.0",
 		"resources": "./resources"
 	}
