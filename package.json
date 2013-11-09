@@ -17,7 +17,8 @@
 		"seaport": "~1.7",
 		"wantsit": "~1.0",
 		"ws": "~0.4",
-		"bonvoyage": "~1.0"
+		"bonvoyage": "~1.0",
+		"columbo": "~1.0"
 	},
 	"devDependencies": {
 		"nodeunit": "~0.8",

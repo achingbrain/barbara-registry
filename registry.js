@@ -1,11 +1,10 @@
 var Seaport = require("seaport"),
 	LOG = require("winston"),
 	nconf = require("nconf"),
-	common = require("../brewbot-common"),
 	wantsit = require("wantsit"),
 	bonvoyage = require("bonvoyage"),
 	WebSocketServer = require("ws").Server,
-	Columbo = require("../../columbo");
+	Columbo = require("columbo");
 
 // set up arguments
 nconf.argv().env().file("./config.json");
@@ -14,8 +13,7 @@ var container = new wantsit.Container();
 container.register("config", nconf);
 
 // create a REST api
-container.createAndRegister("resourceDiscoverer", Columbo, {resourceDirectory: nconf.get("rest:resources")});
-container.createAndRegister("restServer", common.rest.RESTServer);
+container.createAndRegister("columbo", Columbo, {resourceDirectory: nconf.get("rest:resources")});
 
 // start seaport
 var seaport = container.register("seaport", Seaport.createServer());
@@ -46,8 +44,14 @@ bonvoyageClient.register({
 	role: nconf.get("rest:name"),
 	version: nconf.get("rest:version"),
 	createService: function(port) {
-		var restServer = container.find("restServer");
-		restServer.start(port);
+		var columbo = container.find("columbo");
+		var server = Hapi.createServer("0.0.0.0", port, {
+			cors: true
+		});
+		server.addRoutes(columbo.discover());
+		server.start();
+
+		LOG.info("RESTServer", "Running at", "http://localhost:" + port);
 	}
 });
 bonvoyageClient.register({
