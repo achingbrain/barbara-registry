@@ -17,7 +17,7 @@ container.register("config", nconf);
 container.createAndRegister("columbo", Columbo, {
 	resourceDirectory: nconf.get("rest:resources"),
 	resourceCreator: function(resource, name) {
-		return container.createAndRegister(name, resource);
+		return container.createAndRegister(name + "Resource", resource);
 	}
 });
 
