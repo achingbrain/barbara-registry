@@ -5,17 +5,18 @@ var Seaport = require("seaport"),
 	bonvoyage = require("bonvoyage"),
 	WebSocketServer = require("ws").Server,
 	Columbo = require("columbo"),
-	Hapi = require("hapi");
+	Hapi = require("hapi"),
+	path = require("path");
 
 // set up arguments
-nconf.argv().env().file("./config.json");
+nconf.argv().env().file(path.resolve(__dirname, "config.json"));
 
 var container = new wantsit.Container();
 container.register("config", nconf);
 
 // create a REST api
 container.createAndRegister("columbo", Columbo, {
-	resourceDirectory: nconf.get("rest:resources"),
+	resourceDirectory: path.resolve(__dirname, nconf.get("rest:resources")),
 	resourceCreator: function(resource, name) {
 		return container.createAndRegister(name + "Resource", resource);
 	}
